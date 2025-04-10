@@ -1,0 +1,32 @@
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+    --font1 : "Roboto", sans-serif;
+    --font2 : "IBM Plex Sans", sans-serif;
+
+}
+
+.sidebar-menu{
+    font-family: var(--font1);
+    font-size: 0.9rem;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.notion-button{
+    font-family: var(--font1);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.sidebar{
+    height: 90vh;
+    width: 10vh;
+}
+.header{
+    height: 10vh;
+    width: 100vw;
+}
+
+  
