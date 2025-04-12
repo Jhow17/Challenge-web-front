@@ -9,8 +9,7 @@ const Sidebar = () => {
   return (
     <aside className="d-flex sidebar">
       <div
-        className="sidebar-menu d-flex flex-column align-items-center flex-shrink-0 p-2 bg-white text-black vh-100 gap-3"
-        style={{ minWidth: "150px", maxWidth: "225px", overflowY: "auto" }}
+        className="sidebar-menu d-flex flex-column align-items-center flex-shrink-0 px-3 bg-white text-black vh-100 gap-3"   
       >
         <img
           src={logoTemporario}

@@ -1,14 +1,12 @@
-import React from 'react'
+import React from 'react';
 
 const Button = () => {
   return (
-    <div >
-      <span className="d-inline-flex align-items-center gap-1 bg-primary p-1 rounded">
-        <i className="bi bi-plus fs-4 text-white"></i>
-        <button type="button" className="btn btn-primary notion-button">Add Notificação</button>
-      </span>
-    </div>
-  )
-}
+    <button type="button" className="butao btn btn-primary d-inline-flex align-items-center rounded btn-md">
+      <i className="bi bi-plus fs-5 text-white"></i>
+      <span>Add Notificação</span>
+    </button>
+  );
+};
 
-export default Button
+export default Button;

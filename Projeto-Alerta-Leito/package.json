@@ -10,9 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "bootstrap": "^5.3.4",
+    "admin-lte": "^4.0.0-beta3",
+    "apexcharts": "^4.5.0",
+    "bootstrap": "^5.3.5",
     "bootstrap-icons": "^1.11.3",
+    "chart.js": "^4.4.8",
     "react": "^19.0.0",
+    "react-apexcharts": "^1.7.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.4.1"
   },

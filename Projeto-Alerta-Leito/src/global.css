@@ -7,6 +7,9 @@
 
 }
 
+html{
+    font-family: var(--font2);
+}
 .sidebar-menu{
     font-family: var(--font1);
     font-size: 0.9rem;
@@ -26,7 +29,28 @@
 }
 .header{
     height: 10vh;
-    width: 100vw;
+    width: 100%;
+    background-color: #00F466 !important;
 }
 
-  
+.butao{
+    width: 170px;
+    height: 50px;
+}
+
+
+.prev {
+    width: 100%;
+    height: 100%;
+
+}
+
+.custom-gap {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px; /* Ajuste o valor do espaço */
+  }
+
+.text-bg-warning {
+    background-color: #fd7e14 !important; /* Bootstrap Orange */
+  }
