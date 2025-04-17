@@ -1,4 +1,5 @@
 // src/components/GraficoDonut.jsx
+// Grafico da biblioteca 
 import React, { useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
@@ -20,7 +21,6 @@ const GraficoDonut = () => {
             },
             legend: {
               position: 'bottom',
-              bottom: '24px',
 
             },
           },
@@ -30,7 +30,7 @@ const GraficoDonut = () => {
   });
 
   return (
-    <div className="card p-3 d-flex flex-row align-items-center" style={{ minHeight: '20rem' }}>
+    <div className="card p-3 d-flex flex-row align-items-center" style={{ minHeight: '20rem', minWidth: '25rem' }}>
       <div style={{ width: '100%', maxWidth: '30rem' }}>
 
         <ReactApexChart

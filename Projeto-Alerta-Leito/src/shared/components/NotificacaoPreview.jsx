@@ -10,14 +10,18 @@ const NotificacaoPreview = ({ quarto, descricao, prioridade }) => {
   };
 
   return (
-    <div>
+    <div className="d-flex align-items-center gap-2">
       <strong className="d-block">QUARTO {quarto}:</strong>
       <span
-  className="d-block text-uppercase fw-semibold text-muted"
-  style={{ textDecoration: 'underline', textDecorationColor: prioridadeMap[prioridade.toLowerCase()] }}
->
-        {descricao}
-      </span>
+    className="rounded-circle d-inline-block "
+    style={{
+      width: '0.8rem',
+      height: '0.8rem',
+      backgroundColor: prioridadeMap[prioridade.toLowerCase()],
+    }}
+  />
+  <span className="text-uppercase fw-semibold text-muted">{descricao}</span>
+
     </div>
   );
 };

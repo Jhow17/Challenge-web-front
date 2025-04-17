@@ -3,6 +3,7 @@ import LayoutBase from "../shared/layouts/LayoutBase";
 import Button from "../shared/components/Button";
 import GraficoDonut from "../shared/components/GraficoDonut";
 import ListPrevNoti from "../shared/components/ListPrevNoti";
+import FormularioPopup from '../shared/components/FormularioPopup';
 
 
 
@@ -15,6 +16,7 @@ const Dashboard = () => {
       {/* Linha para o botão no canto superior direito */}
       <div className="row d-flex justify-content-end align-items-center p-2 ">
           <Button />
+          <FormularioPopup/>
       </div>
 
       {/* Linha para os cards lado a lado */}
