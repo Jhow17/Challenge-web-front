@@ -1,13 +1,14 @@
 import React from "react";
 import LayoutBase from "../shared/layouts/LayoutBase";
+import AddNotification from "../shared/components/AddNotification";
+
 
 const Notificacoes = () => {
   return (
     <LayoutBase>
-    <h1>Notificações</h1>
-</LayoutBase>
-
-  ) 
+      <AddNotification /> {}
+    </LayoutBase>
+  );
 };
 
 export default Notificacoes;

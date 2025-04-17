@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
 
 :root{
     --font1 : "Roboto", sans-serif;
