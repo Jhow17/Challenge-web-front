@@ -1,67 +1,109 @@
-import { useState } from "react"
-
+import React, { useState } from 'react';
 
 function AddNotification({ onAddNotificationSubmit }) {
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [status, setStatus] = useState('');
-    const [patientName, setPatientName] = useState('');
-    const [responsible, setResponsible] = useState('');
-    const [priority, setPriority] = useState('');
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [status, setStatus] = useState('');
+  const [patientName, setPatientName] = useState('');
+  const [responsible, setResponsible] = useState('');
+  const [priority, setPriority] = useState('');
 
+  const showPatientInput = status === 'ocupado' || status === 'reservado';
 
-    return (
-        <div className="max-w-2xl mx-auto space-y-4 p-6 bg-slate-200 rounded-md flex flex-col mt-3">
-            <input type="text"
-            placeholder="Digite o leito/quarto:"
-            className="border border-black font-medium bg-white mt-3 px-4 py-2 rounded-md" 
-            value={title}
-            onChange={(event) => setTitle(event.target.value)} ></input>
-            
-            <textarea type="text"
-            placeholder="Digite a descrição:"
-            className="border border-black font-medium bg-white mt-3 px-4 py-2 rounded-md"
-            value={description}
-            onChange={(event) => setDescription(event.target.value)} ></textarea>
+  return (
+    <div
+      className="modal fade"
+      id="formModal"
+      tabIndex="-1"
+      aria-labelledby="formModalLabel"
+      aria-hidden="true"
+    >
+      <div className="modal-dialog modal-dialog-centered">
+        <div className="modal-content bg-light rounded-4">
+          <div className="modal-header">
+            <h5 className="modal-title" id="formModalLabel">
+              Nova Notificação
+            </h5>
+            <button
+              type="button"
+              className="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Fechar"
+            ></button>
+          </div>
 
-            <select 
-            className="border border-black bg-white font-medium mt-3 px-4 py-2 rounded-md"
-            value={status}
-            onChange={(event) => setStatus(event.target.value)}
-            >
-                <option value="" disabled>Selecione o status:</option>
+          <div className="modal-body">
+            <form>
+              <label className="form-label">Leito/Quarto:</label>
+              <input
+                type="text"
+                className="form-control rounded-4"
+                value={title}
+                onChange={(event) => setTitle(event.target.value)}
+              />
+
+              <label className="form-label mt-3">Descrição:</label>
+              <textarea
+                className="form-control rounded-4"
+                value={description}
+                onChange={(event) => setDescription(event.target.value)}
+                rows={3}
+              ></textarea>
+
+              <label className="form-label mt-3">Status:</label>
+              <select
+                className="form-select rounded-pill"
+                value={status}
+                onChange={(event) => setStatus(event.target.value)}
+              >
+                <option value="" disabled>
+                  Selecione o status:
+                </option>
                 <option value="disponivel">Disponível</option>
                 <option value="ocupado">Ocupado</option>
                 <option value="limpeza">Em limpeza</option>
                 <option value="manutencao">Manutenção</option>
                 <option value="reservado">Reservado</option>
-            </select>
+              </select>
 
-            <input type="text"
-            placeholder="Digite o nome do paciente:"
-            className="border border-black font-medium bg-white mt-3 px-4 py-2 rounded-md"
-            value={patientName}
-            onChange={(event) => setPatientName(event.target.value)} ></input>
+              {showPatientInput && (
+                <>
+                  <label className="form-label mt-2">Nome do Paciente:</label>
+                  <input
+                    type="text"
+                    className="form-control rounded-4"
+                    value={patientName}
+                    onChange={(e) => setPatientName(e.target.value)}
+                  />
+                </>
+              )}
 
-            <input type="text"
-            placeholder="Digite o nome do responsável:"
-            className="border border-black font-medium bg-white mt-3 px-4 py-2 rounded-md"
-            value={responsible}
-            onChange={(event) => setResponsible(event.target.value)} ></input>
-
-            <select 
-            className="border border-black font-medium bg-white mt-3 px-4 py-2 rounded-md"
-            value={priority}
-            onChange={(event) => setPriority(event.target.value)}
-            >
-                <option value="" disabled>Selecione a prioridade:</option>
+              <label className="form-label mt-3">Prioridade:</label>
+              <select
+                className="form-select rounded-pill"
+                value={priority}
+                onChange={(event) => setPriority(event.target.value)}
+              >
+                <option value="" disabled>
+                  Selecione a prioridade:
+                </option>
                 <option value="alta">Alta</option>
                 <option value="media">Média</option>
                 <option value="baixa">Baixa</option>
-            </select>
-            <button 
-            onClick={() => {
-                if(!title.trim() || !description.trim() || !status.trim() || !patientName.trim() || !responsible.trim() || !priority.trim()) {
+              </select>
+
+              <label className='form-label mt-3'>Responsável:</label>
+              <input
+               type="text"
+               className='form-control rounded-4'
+               value={responsible}
+               onChange={(event) => setResponsible(event.target.value)}
+              >
+              </input>
+
+              <button type="submit"
+                onClick={() => {
+                if(!title.trim() || !description.trim() || !status.trim() || !responsible.trim() || !priority.trim()) {
                     return alert("Preencha todos os campos!");
                 }
                
@@ -72,13 +114,16 @@ function AddNotification({ onAddNotificationSubmit }) {
                 setPatientName("");
                 setResponsible("");
                 setPriority("");
-            }}
-                    
-            className="bg-slate-500 text-white px-4 py-2 mt-3 font-medium !rounded-md w-2/3 self-center">Adicionar</button>
-            
+              }}
+
+              className="btn btn-success w-100 mt-3">Adicionar</button>
+              
+            </form>
+          </div>
         </div>
-    )
-      
+      </div>
+    </div>
+  );
 }
 
 export default AddNotification;
