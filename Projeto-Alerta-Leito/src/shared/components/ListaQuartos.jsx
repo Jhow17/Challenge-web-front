@@ -10,7 +10,7 @@ const ListaQuartos = () => {
             <th>Paciente</th>
             <th>Quarto</th>
             <th>Leito</th>
-            <th>Status</th>
+            <th className="text-center">Status</th>
           </tr>
         </thead>
         <tbody>

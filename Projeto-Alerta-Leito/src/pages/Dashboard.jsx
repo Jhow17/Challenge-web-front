@@ -1,18 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LayoutBase from "../shared/layouts/LayoutBase";
 import Button from "../shared/components/Button";
 import GraficoDonut from "../shared/components/GraficoDonut";
 import ListPrevNoti from "../shared/components/ListPrevNoti";
 import FormularioPopup from '../shared/components/FormularioPopup';
-
+import { fetchLeitosData } from "../shared/services/fakeApi";
+import CardLeito from "../shared/components/CardLeito";
 
 
 const Dashboard = () => {
+  
+    const [leitosData, setLeitosData] = useState({
+      livres: 0,
+      desocupando: 0,
+      ocupados: 0,
+    });
+  
+    useEffect(() => {
+      fetchLeitosData().then(data => setLeitosData(data));
+    }, []);
+
   return (
 
   <LayoutBase>
-  <div className="container-fluid">
-    <div className="container d-grid vh-100 g-2 ">
+
+    <div className="container-fluid d-grid g-2">
       {/* Linha para o botão no canto superior direito */}
       <div className="row d-flex justify-content-end align-items-center p-2 ">
           <Button />
@@ -21,40 +33,27 @@ const Dashboard = () => {
 
       {/* Linha para os cards lado a lado */}
       <div className="row  d-flex justify-content-around align-items-start">
-        <div className="col-auto">
-          <div className="card mb-3 text-center bg-success text-white" style={{ minWidth: "14rem" }}>
-            <div className="card-header fs-6 text">LIVRES</div>
-            <div className="card-body">
-              <h5 className="card-title fs-5 text">14</h5>
-            </div>
-          </div>
+        <div className="col-12 col-md-4 mb-3">
+          <CardLeito titulo="LIVRES" valor={leitosData.livres} bg="bg-success" />
         </div>
 
-        <div className="col-auto">
-          <div className="card text-bg-warning mb-3 text-white text-center" style={{ minWidth: "14rem" }}>
-            <div className="card-header fs-6 text ">DESOCUPANDO</div>
-            <div className="card-body">
-              <h5 className="card-title fs-5 text">27</h5>
-            </div>
-          </div>
+        <div className="col-12 col-md-4 mb-3">
+            <CardLeito titulo="DESOCUPANDO" valor={leitosData.desocupando} bg="text-bg-warning" />
+          
         </div>
-
-        <div className="col-auto">
-          <div className="card bg-danger text-white mb-3 text-center " style={{ minWidth: "14rem" }}>
-            <div className="card-header fs-6 text">OCUPADOS</div>
-            <div className="card-body">
-              <h5 className="card-title fs-5 text">30</h5>
-            </div>
-          </div>
+        
+        <div className="col-12 col-md-4 mb-3">
+          <CardLeito titulo="OCUPADOS" valor={leitosData.ocupados} bg="bg-danger" />
         </div>
+        
       </div>
-      <div className="row  d-flex justify-content-center">
-        <div className="col-8 text-center">
-        <h4 className="text-center mb-3">Status dos Leitos</h4>
-          <GraficoDonut/>
+      <div className="row  d-flex justify-content-center align-content-center mt-5">
+      <div className="col-12 col-md-8 text-center">
+        <h4 className="text-body-secondary mb-3 ">Status dos Leitos</h4>
+          <GraficoDonut livres={leitosData.livres} desocupando={leitosData.desocupando} ocupados={leitosData.ocupados}  />
         </div>
-        <div className="col d-flex align-items-center flex-column">
-          <h4>Notificações</h4>
+        <div className="col-12 col-md-4 d-flex align-items-center flex-column mt-4 mt-md-0">
+        <h4 class="text-body-secondary mb-3">Notificações</h4>
           <ListPrevNoti />
 
         </div>
@@ -62,7 +61,7 @@ const Dashboard = () => {
 
       </div>
     </div>
-  </div>
+
 </LayoutBase>
 
 

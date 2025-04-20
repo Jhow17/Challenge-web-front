@@ -15,7 +15,7 @@ const QuartoItem = ({ paciente, quarto, leito, status }) => {
       <td>{paciente}</td>
       <td>{quarto}</td>
       <td>{leito}</td>
-      <td >{status?.toUpperCase()}</td>
+      <td className="text-center" >{status?.toUpperCase()}</td>
     </tr>
   );
 };

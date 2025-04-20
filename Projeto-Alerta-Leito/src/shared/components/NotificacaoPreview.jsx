@@ -1,29 +1,40 @@
 import React from 'react';
 
-
 const NotificacaoPreview = ({ quarto, descricao, prioridade }) => {
-  // Define a cor da badge com base na prioridade
   const prioridadeMap = {
-    simples: '#0d6efd', // azul (equivalente ao bg-primary)
-    media: '#6f42c1',   // roxo (exemplo de bg-purple)
-    alta: '#dc3545', 
+    simples: '#0d6efd', // azul
+    media: '#6f42c1',   // roxo
+    alta: '#dc3545',    // vermelho
   };
 
-  return (
-    <div className="d-flex align-items-center gap-2">
-      <strong className="d-block">QUARTO {quarto}:</strong>
-      <span
-    className="rounded-circle d-inline-block "
-    style={{
-      width: '0.8rem',
-      height: '0.8rem',
-      backgroundColor: prioridadeMap[prioridade.toLowerCase()],
-    }}
-  />
-  <span className="text-uppercase fw-semibold text-muted">{descricao}</span>
+  const prioridadeCor = prioridadeMap[prioridade.toLowerCase()] || '#6c757d'; // fallback cinza
 
+  return (
+    <div className="toast show mb-2" role="alert" aria-live="assertive" aria-atomic="true">
+      <div className="toast-header">
+        <span
+          className="rounded-circle me-2 d-inline-block"
+          style={{
+            width: '0.8rem',
+            height: '0.8rem',
+            backgroundColor: prioridadeCor,
+          }}
+        ></span>
+        <strong className="me-auto">Quarto {quarto}</strong>
+        <small className="text-muted">agora</small>
+        <button
+          type="button"
+          className="btn-close"
+          data-bs-dismiss="toast"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div className="toast-body text-muted text-uppercase fw-semibold">
+        {descricao}
+      </div>
     </div>
   );
 };
 
 export default NotificacaoPreview;
+
