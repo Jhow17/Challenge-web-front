@@ -1,5 +1,5 @@
 import React from 'react';
-import FormularioPopup from './FormularioPopup';
+import AddNotification from "./AddNotification";
 
 const Button = () => {
 
@@ -10,7 +10,7 @@ const Button = () => {
       <i className="bi bi-plus fs-5 text-white"></i>
       <span>Add Notificação</span>
     </button>
-    <FormularioPopup/>
+    
 
     </>
 
