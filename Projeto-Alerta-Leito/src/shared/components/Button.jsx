@@ -10,7 +10,7 @@ const Button = () => {
       <i className="bi bi-plus fs-5 text-white"></i>
       <span>Add Notificação</span>
     </button>
-    <AddNotification/>
+    
 
     </>
 

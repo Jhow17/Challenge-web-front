@@ -13,7 +13,6 @@ const Dashboard = () => {
           {/* Linha para o botão no canto superior direito */}
           <div className="row d-flex justify-content-end align-items-center p-2 ">
             <Button />
-            <AddNotification />
           </div>
 
           {/* Linha para os cards lado a lado */}
