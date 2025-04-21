@@ -1,4 +1,4 @@
-// simulaçao de como os dados viriam de um banco de dados
+// simulaçao de como os valores viriam de um banco de dados
 export const fetchLeitosData = () => {
     return new Promise((resolve) => {
       setTimeout(() => {

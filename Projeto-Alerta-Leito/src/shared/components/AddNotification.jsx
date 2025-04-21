@@ -53,13 +53,10 @@ function AddNotification({ onAddNotificationSubmit }) {
           onChange={(event) => setStatus(event.target.value)}
         >
           <option value="" disabled>
-            Selecione o status:
+            Selecione o Serviço:
           </option>
-          <option value="disponivel">Disponível</option>
-          <option value="ocupado">Ocupado</option>
-          <option value="limpeza">Em limpeza</option>
+          <option value="limpeza">Limpeza</option>
           <option value="manutencao">Manutenção</option>
-          <option value="reservado">Reservado</option>
         </select>
 
         {showPatientInput && (
