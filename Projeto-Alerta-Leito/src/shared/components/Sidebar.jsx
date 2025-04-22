@@ -34,11 +34,6 @@ const Sidebar = () => {
               <i className="bi bi-bell-fill me-2"></i> Notificações
             </Link>
           </li>
-          <li>
-            <Link to="/adm" className="nav-link text-black">
-              <i className="bi bi-gear me-2"></i> ADM
-            </Link>
-          </li>
         </ul>
       </div>
     </aside>

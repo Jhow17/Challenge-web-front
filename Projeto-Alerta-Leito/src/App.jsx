@@ -4,8 +4,6 @@ import './global.css';
 import React from "react";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
-
-
 import { Routes, Route } from "react-router-dom";
 
 import Modal from "./shared/components/Modal";
