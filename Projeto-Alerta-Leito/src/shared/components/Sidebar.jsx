@@ -1,15 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 import Button from "./Button";
-import "bootstrap/dist/css/bootstrap.min.css";
-
 import logoTemporario from '../images/Logo-Temporario.png';
 
 const Sidebar = () => {
   return (
-    <aside className="d-flex sidebar">
+    <aside>
       <div
-        className="sidebar-menu d-flex flex-column align-items-center flex-shrink-0 px-3 bg-white text-black vh-100 gap-3"   
+        className="d-flex flex-column align-items-center px-3 bg-white text-black vh-100 gap-3"
       >
         <img
           src={logoTemporario}

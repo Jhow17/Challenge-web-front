@@ -3,14 +3,13 @@
 import React, { useState, useEffect } from "react";
 import ReactApexChart from "react-apexcharts";
 
-
-const GraficoDonut = ({livres,desocupando,ocupados}) => {
+const GraficoDonut = ({ livres, desocupando, ocupados }) => {
   const [series, setSeries] = useState([livres, desocupando, ocupados]);
+
   useEffect(() => {
-    // Atualiza os dados sempre que as props mudarem
     setSeries([livres, desocupando, ocupados]);
   }, [livres, desocupando, ocupados]);
- 
+
   const options = {
     chart: {
       type: "donut",
@@ -19,10 +18,10 @@ const GraficoDonut = ({livres,desocupando,ocupados}) => {
     colors: ["#198754", "#fd7e14", "#dc3545"],
     responsive: [
       {
-        breakpoint: 480,
+        breakpoint: 768,
         options: {
           chart: {
-            width: 200,
+            width: 250,
           },
           legend: {
             position: "bottom",
@@ -33,14 +32,17 @@ const GraficoDonut = ({livres,desocupando,ocupados}) => {
   };
 
   return (
-    <div className="card p-3 d-flex flex-row align-items-center" style={{ minHeight: "20rem", minWidth: "25rem" }}>
-      <div style={{ width: "100%", maxWidth: "30rem" }}>
+    <div className="card p-3 d-flex flex-column flex-md-row align-items-center gap-4 w-100" style={{ minHeight: "18rem" }}>
+      <div
+  className="w-100 w-md-50"
+  style={{ minHeight: "15rem", maxWidth: "400px", width: "100%" }}
+>
         <ReactApexChart options={options} series={series} type="donut" width="100%" />
       </div>
-      <div className="d-flex justify-content-center align-items-center flex-column">
+      <div className="d-flex justify-content-center align-items-center flex-column text-center">
         <h5 className="fw-light">Total de Pacientes</h5>
-        <h2 className="text-center">{series.reduce((a, b) => a + b, 0)}</h2>
-        <p className="text-center">Pacientes</p>
+        <h2>{series.reduce((a, b) => a + b, 0)}</h2>
+        <p>Pacientes</p>
       </div>
     </div>
   );

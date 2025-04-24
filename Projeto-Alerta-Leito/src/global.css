@@ -8,8 +8,10 @@
 
 }
 
-html{
+html,body {
     font-family: var(--font2);
+    overflow-x: hidden;
+    max-width: 100vw;
 }
 .sidebar-menu{
     font-family: var(--font1);
@@ -24,14 +26,23 @@ html{
     text-transform: uppercase;
 }
 
-.sidebar{
-    height: 90vh;
-    width: 10vh;
-}
+
+.sidebar {
+    z-index: 1050; 
+    position: fixed; 
+  }
+  
+  @media (min-width: 1400px) {
+    .sidebar {
+      position: relative;
+      z-index: auto;
+    }
+  }
 .header{
     height: 10vh;
     width: 100%;
     background-color: #005AA9 !important;
+    min-width: 100%;
 }
 
 .butao{

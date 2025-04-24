@@ -1,17 +1,16 @@
 import React from 'react';
 
-const Header = () => {
+const Header = ({ onToggleSidebar }) => {
   return (
-    //  w-100 para ocupar toda a largura da tela
-    // top-0 para ficar no
-    // position-fixed para ficar fixo no topo
-    <header className="header w-100 m-0 container bg-success text-white py-3 d-flex justify-content-end ">
-      <div className=" bg-white rounded-pill px-3 py-3 d-flex align-items-center justify-content-center gap-2">
-        <i className="bi bi-list text-black-50 fs-4"></i>
-        <i className="bi bi-person-circle text-black-50  fs-4"></i>
+    <header className="header bg-success text-white py-3 d-flex justify-content-between align-items-center px-3">
+      <button className="btn btn-light d-md-none" onClick={onToggleSidebar}>
+        <i className="bi bi-list"></i>
+      </button>
+
+      <div className="bg-white rounded-pill px-3 py-2 d-flex align-items-center gap-2">
+        <i className="bi bi-person-circle text-black-50 fs-4"></i>
       </div>
     </header>
   );
-}
-
+};
 export default Header;

@@ -1,26 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
 
 const LayoutBase = ({ children }) => {
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+
   return (
-    <div className="container-fluid vh-100 d-flex flex-column">
-      {/* Linha para o Header */}
-      <div className="row">
-   
-          <Header />
+    <div className="d-flex flex-column  overflow-hidden">
+      {/* Header com botão hamburguer no mobile */}
+      <Header onToggleSidebar={() => setSidebarOpen(!isSidebarOpen)} />
 
-      </div>
-
-      {/* Linha para o corpo principal */}
-      <div className="row flex-grow-1">
-        {/* Coluna para a Sidebar */}
-        <div className="col-2 bg-light">
+      <div className="d-flex flex-grow-1">
+        {/* Sidebar MOBILE (aparece/desaparece) */}
+        <div
+          className={`d-md-none position-fixed top-0 start-0 bg-white shadow h-100 z-50 transition-transform ${
+            isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
+          style={{ width: "250px" }}
+        >
           <Sidebar />
         </div>
 
-        {/* Coluna para o conteúdo principal */}
-        <div className="col-10 p-3">
+        {/* Sidebar DESKTOP (sempre visível) */}
+        <div className="d-none d-md-block bg-white shadow" style={{ width: "250px", height: "100vh" }}>
+          <Sidebar />
+        </div>
+
+        {/* Conteúdo principal */}
+        <div className="flex-grow-1 overflow-auto p-3" style={{marginLeft: "25px" }}>
           {children}
         </div>
       </div>

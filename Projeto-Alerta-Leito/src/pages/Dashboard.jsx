@@ -27,16 +27,16 @@ const Dashboard = () => {
           </div>
 
           {/* Linha para os cards lado a lado */}
-          <div className="row d-flex justify-content-around align-items-start">
-            <div className="col-12 col-md-4 mb-3">
+          <div className="row row-cols-1 row-cols-md-3 g-3">
+            <div className="col">
               <CardLeito titulo="LIVRES" valor={leitosData.livres} bg="bg-success" />
             </div>
 
-            <div className="col-12 col-md-4 mb-3">
+            <div className="col">
               <CardLeito titulo="DESOCUPANDO" valor={leitosData.desocupando} bg="text-bg-warning" />
             </div>
 
-            <div className="col-12 col-md-4 mb-3">
+            <div className="col">
               <CardLeito titulo="OCUPADOS" valor={leitosData.ocupados} bg="bg-danger" />
             </div>
           </div>
