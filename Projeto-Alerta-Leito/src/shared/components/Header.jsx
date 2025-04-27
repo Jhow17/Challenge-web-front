@@ -7,7 +7,7 @@ const Header = ({ onToggleSidebar }) => {
         <i className="bi bi-list"></i>
       </button>
 
-      <div className="bg-white rounded-pill px-3 py-2 d-flex align-items-center gap-2">
+      <div className="bg-white rounded-pill px-2 py-1 d-flex align-items-center gap-2">
         <i className="bi bi-person-circle text-black-50 fs-4"></i>
       </div>
     </header>

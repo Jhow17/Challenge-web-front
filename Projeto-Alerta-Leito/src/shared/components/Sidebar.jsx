@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Button from "./Button";
 import logoTemporario from '../images/Logo-Temporario.png';
 
 const Sidebar = () => {
@@ -15,7 +14,7 @@ const Sidebar = () => {
           className="img-fluid mb-5 mt-5"
           style={{ maxWidth: "100px", height: "auto" }}
         />
-        <Button />
+
         <ul className="nav nav-pills flex-column mb-auto gap-3">
           <li className="nav-item">
             <Link to="/" className="nav-link text-black">

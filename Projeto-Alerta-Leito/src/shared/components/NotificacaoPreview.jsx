@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NotificacaoPreview = ({ quarto, descricao, prioridade }) => {
+const NotificacaoPreview = ({ quarto, descricao, prioridade, status }) => {
   const prioridadeMap = {
     simples: '#0d6efd', // azul
     media: '#6f42c1',   // roxo
@@ -21,7 +21,7 @@ const NotificacaoPreview = ({ quarto, descricao, prioridade }) => {
           }}
         ></span>
         <strong className="me-auto">Quarto {quarto}</strong>
-        <small className="text-muted">agora</small>
+        <small className="text-muted">{status}</small>
         <button
           type="button"
           className="btn-close"
@@ -29,7 +29,7 @@ const NotificacaoPreview = ({ quarto, descricao, prioridade }) => {
           aria-label="Close"
         ></button>
       </div>
-      <div className="toast-body text-muted text-uppercase fw-semibold">
+      <div className="toast-body text-muted text-uppercase ">
         {descricao}
       </div>
     </div>

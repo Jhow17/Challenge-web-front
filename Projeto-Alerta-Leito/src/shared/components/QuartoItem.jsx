@@ -7,12 +7,12 @@ const statusColors = {
   "pronto para uso": "success",
 };
 
-const QuartoItem = ({ paciente, quarto, leito, status }) => {
+const QuartoItem = ({quarto, leito, status,responsavel}) => {
   const statusClass = statusColors[status.toLowerCase()] || "text-secondary";
 
   return (
     <tr className={`table-${statusClass}`}>
-      <td>{paciente}</td>
+      <td>{responsavel}</td>
       <td>{quarto}</td>
       <td>{leito}</td>
       <td className="text-center" >{status?.toUpperCase()}</td>

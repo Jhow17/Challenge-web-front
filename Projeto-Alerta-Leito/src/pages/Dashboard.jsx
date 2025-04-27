@@ -14,13 +14,14 @@ const Dashboard = () => {
   });
 
   useEffect(() => {
+    // pega os dados da api falsa
     fetchLeitosData().then((data) => setLeitosData(data));
   }, []);
 
   return (
     <LayoutBase>
       <div className="container-fluid">
-        <div className="container d-grid vh-100 g-2">
+        <div className="container d-grid  g-2">
           {/* Linha para o botão no canto superior direito */}
           <div className="row d-flex justify-content-end align-items-center p-2">
             <Button />

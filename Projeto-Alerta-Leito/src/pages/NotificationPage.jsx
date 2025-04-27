@@ -12,7 +12,7 @@ function NotificationPage() {
   return (
     <div className="h-screen w-screen bg-gray-100 p-8">
         <h1 className="text-center">Detalhes da notificação</h1>
-      <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8 text-center">
+        <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8 text-center">
         <h1 className="text-2xl p-3 rounded-md font-bold mb-2 inline-block">{title}</h1>
         <p className="mb-2"><strong>Descrição:</strong> {description}</p>
         <p className="mb-2"><strong>Status:</strong> {status}</p>

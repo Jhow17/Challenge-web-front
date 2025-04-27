@@ -1,15 +1,45 @@
-import React from 'react'
-import NotificacaoPreview from './NotificacaoPreview';
+import React, { useEffect, useState } from 'react';
+import NotificacaoPreview from './NotificacaoPreview'
+
 
 const ListPrevNoti = () => {
+    const [notifications, setNotifications] = useState([]);
+    // aqui ele ta fznd a mesma coisa que na App pegando os dados diretos da local storage para atualizar
+
+    useEffect(() => {
+        const storedNotifications = JSON.parse(localStorage.getItem("notifications")) || [];
+        setNotifications(storedNotifications);
+      }, []);
 return (
-    <div className="    flex-grow-1 overflow-auto">
+    <div className="flex-grow-1 overflow-auto ">
+        <div className="mb-3">
+            <div className="ml-6 d-flex gap-3">
+                <div className="d-flex align-items-center gap-1">
+                <span className="rounded-circle d-inline-block" style={{ width: '0.8rem', height: '0.8rem', backgroundColor: '#dc3545' }}></span>
+                <small>Alta</small>
+                </div>
+                <div className="d-flex align-items-center gap-1">
+                <span className="rounded-circle d-inline-block" style={{ width: '0.8rem', height: '0.8rem', backgroundColor: '#6f42c1' }}></span>
+                <small>Média</small>
+                </div>
+                <div className="d-flex align-items-center gap-1">
+                <span className="rounded-circle d-inline-block" style={{ width: '0.8rem', height: '0.8rem', backgroundColor: '#0d6efd' }}></span>
+                <small>Simples</small>
+                </div>
+            </div>
+        </div>
         <ul className="list-group">
-            <li className="list-group-item"><NotificacaoPreview quarto="02"descricao="Leito aguardando limpeza"prioridade="media"/></li>
-            <li className="list-group-item"><NotificacaoPreview quarto="07"descricao="Leito aguardando manutenção"prioridade="simples"/></li>
-            <li className="list-group-item"><NotificacaoPreview quarto="12"descricao="Leito aguardando manutenção"prioridade="alta"/></li>
-            <li className="list-group-item"><NotificacaoPreview quarto="20"descricao="Leito aguardando limpeza"prioridade="media"/></li>
-        </ul>
+        {notifications.slice(-4).reverse().map((notification) => (
+          <li key={notification.id} className="list-group-item">
+            <NotificacaoPreview 
+              quarto={notification.title} 
+              descricao={notification.description}
+              prioridade={notification.priority} 
+              status={notification.status} 
+            />
+          </li>
+        ))}
+      </ul>
     </div>
 );
 }
