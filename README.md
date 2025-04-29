@@ -1,5 +1,4 @@
-﻿# Challenge-web-front
-﻿# Projeto Alerta Leitos
+﻿# Challenge - First Year - Web-Front: Alerta Leitos
 
 ## Resumo
 O Alerta Leitos é uma aplicação web que visa otimizar o fluxo de pacientes nos leitos, permitindo uma comunicação ágil entre as equipes de limpeza, manutenção e enfermagem, melhorando a eficiência hospitalar e proporcionando uma melhor experiência para os pacientes.
