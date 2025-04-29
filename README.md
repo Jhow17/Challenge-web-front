@@ -8,7 +8,7 @@ O Alerta Leitos é uma aplicação web que visa otimizar o fluxo de pacientes no
 - **HTML5**: Estrutura da página.
 - **CSS3**: Estilização e layout responsivo.
 - **Bootstrap**: Estilização e layout responsivo.
-- - **JavaScript**: Funcionalidades interativas .
+- **JavaScript**: Funcionalidades interativas .
 
 ## Membros do Grupo
 - Jonathan Henrique
