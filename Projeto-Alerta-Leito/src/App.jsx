@@ -10,7 +10,6 @@ import Modal from "./shared/components/Modal";
 import Dashboard from "./pages/Dashboard";
 import ListaStatus from "./pages/ListaStatus";
 import Notificacoes from "./pages/Notificacoes";
-import Adm from "./pages/Adm";
 import AddNotification from "./shared/components/AddNotification";
 import NotificationPage from "./pages/NotificationPage";
 
@@ -63,7 +62,7 @@ function App() {
               />
             } 
           />
-          <Route path="/adm" element={<Adm />} />
+   
           <Route path="/notification" element={<NotificationPage />} />
         </Routes>
       </div>

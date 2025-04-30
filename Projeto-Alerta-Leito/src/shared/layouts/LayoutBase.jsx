@@ -11,7 +11,7 @@ const LayoutBase = ({ children }) => {
       <Header onToggleSidebar={() => setSidebarOpen(!isSidebarOpen)} />
 
       <div className="d-flex flex-grow-1">
-        {/* Sidebar MOBILE (aparece/desaparece) */}
+        {/*  (aparece/desaparece) */}
         <div
           className={`d-md-none position-fixed top-0 start-0 bg-white shadow h-100 z-50 transition-transform ${
             isSidebarOpen ? "translate-x-0" : "-translate-x-full"
@@ -21,12 +21,12 @@ const LayoutBase = ({ children }) => {
           <Sidebar />
         </div>
 
-        {/* Sidebar DESKTOP (sempre visível) */}
+        {/* (sempre vai da pra ver) */}
         <div className="d-none d-md-block bg-white shadow" style={{ width: "250px", height: "100vh" }}>
           <Sidebar />
         </div>
 
-        {/* Conteúdo principal */}
+        {/* principal */}
         <div className="flex-grow-1 overflow-auto p-3" style={{marginLeft: "25px" }}>
           {children}
         </div>
