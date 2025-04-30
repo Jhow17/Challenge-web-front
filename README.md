@@ -17,4 +17,4 @@ O Alerta Leitos é uma aplicação web que visa otimizar o fluxo de pacientes no
 - Alan de Castro RM: 560152
 
 # Clone o repositório
-git clone https://github.com/SEU-USUARIO/Challenge-web-front.git
+git clone https://github.com/Jhow17/Challenge-web-front.git
