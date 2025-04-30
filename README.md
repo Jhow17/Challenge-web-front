@@ -10,10 +10,11 @@ O Alerta Leitos é uma aplicação web que visa otimizar o fluxo de pacientes no
 - **JavaScript**: Funcionalidades interativas .
 
 ## Membros do Grupo
-- Jonathan Henrique
-- Henrique Celso
-- Davis Cardoso
-- Lucas Cortizo
-- Alan de Castro
-- Link GitHub Pages
-https://jhow17.github.io/LandingPage/
+- Jonathan Henrique RM:561139
+- Henrique Celso RM: 559687
+- Davis Cardoso RM: 560723
+- Lucas Cortizo RM: 559734
+- Alan de Castro RM: 560152
+
+# Clone o repositório
+git clone https://github.com/SEU-USUARIO/Challenge-web-front.git
