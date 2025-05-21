@@ -1,21 +1,21 @@
 import React from "react";
 
 const statusColors = {
-  "ocupado": "danger",
-  "aguardando limpeza": "warning",
-  "aguardando manutenção": "info",
-  "pronto para uso": "success",
+  "ocupado": "bg-red-600/70 text-white",          
+  "livre": "bg-green-600/70 text-white",        
+  "aguardando limpeza": "bg-blue-600/70 text-white",   
+  "aguardando manutenção": "bg-purple-500/70 text-white", 
 };
 
-const QuartoItem = ({quarto, leito, status,responsavel}) => {
-  const statusClass = statusColors[status.toLowerCase()] || "text-secondary";
+const QuartoItem = ({ quarto, leito, status, responsavel }) => {
+  const statusClass = statusColors[status];
 
   return (
-    <tr className={`table-${statusClass}`}>
-      <td>{responsavel}</td>
-      <td>{quarto}</td>
-      <td>{leito}</td>
-      <td className="text-center" >{status?.toUpperCase()}</td>
+    <tr className={`border-b`}>
+      <td className={`px-4 py-2 ${statusClass}`}>{responsavel}</td>
+      <td className={`px-4 py-2 ${statusClass}`}>{quarto}</td>
+      <td className={`px-4 py-2 ${statusClass}`}>{leito}</td>
+      <td className={`px-4 py-2 text-center ${statusClass}`}>{status?.toUpperCase()}</td>
     </tr>
   );
 };

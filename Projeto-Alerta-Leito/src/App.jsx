@@ -1,24 +1,23 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './global.css';
-import React from "react";
-import { useEffect, useState } from "react";
+import { React, useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { Routes, Route } from "react-router-dom";
-
 import Modal from "./shared/components/Modal";
 import Dashboard from "./pages/Dashboard";
 import ListaStatus from "./pages/ListaStatus";
 import Notificacoes from "./pages/Notificacoes";
 import AddNotification from "./shared/components/AddNotification";
 import NotificationPage from "./pages/NotificationPage";
-
+import notificacoes from "./shared/services/notificacoes";
 function App() {
   const [openModal, setOpenModal] = useState(false);
   const [notifications, setNotifications] = useState(JSON.parse(localStorage.getItem("notifications")) || []);
 
   useEffect(() => {
     localStorage.setItem("notifications", JSON.stringify(notifications));
+    
   }, [notifications])
 
   function onDeleteClick(notificationId) {
@@ -38,6 +37,7 @@ function App() {
       isCompleted: false,
     };
     setNotifications([...notifications, newNotification]);
+ 
   }
 
   return (
