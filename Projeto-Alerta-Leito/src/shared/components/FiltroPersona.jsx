@@ -2,12 +2,13 @@ import React from 'react'
 import { GiVacuumCleaner } from "react-icons/gi";
 import { GoTools } from "react-icons/go";
 
-const FiltroPersona = () => {
+const FiltroPersona = ({ onFiltroClick }) => {
   return (
     <div className='p-4 bg-slate-50 rounded-lg shadow'>
       
       <div className='flex justify-content-around space-x-3 md:space-x-4'>
-        <button
+        {/* vai definir para limpeza */}
+        <button onClick={() => onFiltroClick("limpeza")}
           className='
             flex items-center justify-center space-x-2 
             bg-sky-500 hover:bg-sky-600 
@@ -26,8 +27,10 @@ const FiltroPersona = () => {
           <span>Limpeza</span>
         </button>
 
-        <button
+        <button onClick={() => onFiltroClick("manutencao")}
+
           className='
+          
             flex items-center justify-center space-x-2 
             bg-purple-500 hover:bg-purple-600 
             text-white 

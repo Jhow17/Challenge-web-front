@@ -1,9 +1,9 @@
 import React from "react";
 
 const statusColors = {
-  "ocupado": "bg-red-600/70 text-white",          
-  "livre": "bg-green-600/70 text-white",        
-  "aguardando limpeza": "bg-blue-600/70 text-white",   
+  "ocupado": "bg-red-500/70 text-white",          
+  "livre": "bg-green-500/70 text-white",        
+  "aguardando limpeza": "bg-blue-500/70 text-white",   
   "aguardando manutenção": "bg-purple-500/70 text-white", 
 };
 
