@@ -11,7 +11,7 @@ const ListPrevNoti = () => {
         setNotifications(storedNotifications);
       }, []);
 return (
-    <div className="flex-grow-1 overflow-auto ">
+    <div className="flex-grow-1 overflow-auto">
         <div className="mb-3">
             <div className="ml-6 d-flex gap-3">
                 <div className="d-flex align-items-center gap-1">

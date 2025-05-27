@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import  { React, useEffect, useState } from "react";
 import QuartoItem from "./QuartoItem";
 import { buscaQuartos } from "../services/quartos"; 
@@ -45,21 +46,52 @@ const ListaQuartos = () => {
             <th>Responsável</th>
             <th>Quarto</th>
             <th>Leito</th>
+=======
+import { React, useEffect, useState } from "react";
+import QuartoItem from "./QuartoItem";
+import { quartos } from "../services/quartos";
 
-            <th className="text-center">Status</th>
+const ListaQuartos = () => {
+  const [quartosData, setQuartosData] = useState([]);
+>>>>>>> 23b5c5b615923c30aef8c37d2336ecf1aca72404
+
+  useEffect(() => {
+    quartos().then((data) => setQuartosData(data));
+  }, []);
+
+  return (
+    <div className="overflow-x-auto">
+      <table className="min-w-full table-auto border-collapse bg-zinc-700">
+        <thead className="bg-gray-100">
+          <tr>
+            <th className="px-4 py-2 text-left font-medium">Responsável</th>
+            <th className="px-4 py-2 text-left font-medium">Quarto</th>
+            <th className="px-4 py-2 text-left font-medium">Leito</th>
+            <th className="px-4 py-2 text-center font-medium">Status</th>
           </tr>
         </thead>
         <tbody>
+<<<<<<< HEAD
           {quartosData.map((quarto) => (
                      <QuartoItem
               key={quarto.id}
               quarto={quarto.numeroQuarto}
+=======
+          {quartosData.map((quarto, idx) => (
+            <QuartoItem
+              key={idx}
+              quarto={quarto.quarto}
+>>>>>>> 23b5c5b615923c30aef8c37d2336ecf1aca72404
               leito={quarto.leito}
               responsavel={quarto.responsavel}
               status={quarto.status}
             />
+<<<<<<< HEAD
         ))}
  
+=======
+          ))}
+>>>>>>> 23b5c5b615923c30aef8c37d2336ecf1aca72404
         </tbody>
       </table>
     </div>
