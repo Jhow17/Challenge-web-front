@@ -1,10 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './global.css';
-import React from "react";
-import { useEffect, useState } from "react";
+import { React, useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
-import { Routes, Route } from "react-router-dom";
+import {  Routes, Route } from "react-router-dom";
+
 
 import Modal from "./shared/components/Modal";
 import Dashboard from "./pages/Dashboard";

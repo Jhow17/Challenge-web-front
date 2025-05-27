@@ -1,0 +1,26 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Quarto{
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  numeroQuarto  Int       @unique // O número do quarto será único
+  leito         Int
+  responsavel   String?   // O '?' torna o campo opcional (pode ser nulo)
+  status        String    // Ex: "livre", "ocupado", "limpeza"
+  createdAt     DateTime  @default(now()) // Data de criação, preenchida automaticamente
+  updatedAt     DateTime  @updatedAt     // Data da última atualização, preenchida automaticamente
+}
+
+
