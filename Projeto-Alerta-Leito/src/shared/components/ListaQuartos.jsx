@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import  { React, useEffect, useState } from "react";
 import QuartoItem from "./QuartoItem";
 import { buscaQuartos } from "../services/quartos"; 
@@ -38,26 +37,6 @@ const ListaQuartos = () => {
     return <p className="text-center py-4">Nenhum quarto encontrado.</p>;
   }
 
-  return (
-    <div className="table-responsive">
-      <table className="table table-striped table-hover align-middle gap-4">
-        <thead className="table-light">
-          <tr>
-            <th>Responsável</th>
-            <th>Quarto</th>
-            <th>Leito</th>
-=======
-import { React, useEffect, useState } from "react";
-import QuartoItem from "./QuartoItem";
-import { quartos } from "../services/quartos";
-
-const ListaQuartos = () => {
-  const [quartosData, setQuartosData] = useState([]);
->>>>>>> 23b5c5b615923c30aef8c37d2336ecf1aca72404
-
-  useEffect(() => {
-    quartos().then((data) => setQuartosData(data));
-  }, []);
 
   return (
     <div className="overflow-x-auto">
@@ -71,27 +50,16 @@ const ListaQuartos = () => {
           </tr>
         </thead>
         <tbody>
-<<<<<<< HEAD
           {quartosData.map((quarto) => (
                      <QuartoItem
               key={quarto.id}
               quarto={quarto.numeroQuarto}
-=======
-          {quartosData.map((quarto, idx) => (
-            <QuartoItem
-              key={idx}
-              quarto={quarto.quarto}
->>>>>>> 23b5c5b615923c30aef8c37d2336ecf1aca72404
               leito={quarto.leito}
               responsavel={quarto.responsavel}
               status={quarto.status}
             />
-<<<<<<< HEAD
         ))}
  
-=======
-          ))}
->>>>>>> 23b5c5b615923c30aef8c37d2336ecf1aca72404
         </tbody>
       </table>
     </div>

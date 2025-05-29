@@ -3,13 +3,9 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import './global.css';
 import { React, useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
-<<<<<<< HEAD
 import {  Routes, Route } from "react-router-dom";
 
 
-=======
-import { Routes, Route } from "react-router-dom";
->>>>>>> 23b5c5b615923c30aef8c37d2336ecf1aca72404
 import Modal from "./shared/components/Modal";
 import Dashboard from "./pages/Dashboard";
 import ListaStatus from "./pages/ListaStatus";
