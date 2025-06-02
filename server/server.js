@@ -2,6 +2,8 @@ import { error } from "console";
 import express from "express";
 import { PrismaClient } from '@prisma/client';
 import cors from 'cors';
+
+import router from "./whatsapp.js";
 const prisma = new PrismaClient();
 
 const app = express()
@@ -9,6 +11,8 @@ const app = express()
 const port = 5001
 app.use(express.json())
 app.use(cors())
+
+app.use('/api/whatsapp', router);
 
 app.get('/quartos', async (req, res) => {
     try{

@@ -11,7 +11,7 @@ const ListPrevNoti = () => {
         setNotifications(storedNotifications);
       }, []);
 return (
-    <div className="flex-grow-1 overflow-auto">
+    <div className="flex-grow-1 overflow-hidden">
         <div className="mb-3">
             <div className="ml-6 d-flex gap-3">
                 <div className="d-flex align-items-center gap-1">
@@ -28,9 +28,9 @@ return (
                 </div>
             </div>
         </div>
-        <ul className="list-group">
+        <ul className="list-group ">
         {notifications.slice(-4).reverse().map((notification) => (
-          <li key={notification.id} className="list-group-item">
+          <li key={notification.id} className="list-group-item p-2">
             <NotificacaoPreview 
               quarto={notification.title} 
               descricao={notification.description}

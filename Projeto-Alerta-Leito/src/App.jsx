@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './global.css';
-import { React, useEffect, useState } from "react";
+import  {React, useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import {  Routes, Route } from "react-router-dom";
 
@@ -12,7 +12,8 @@ import ListaStatus from "./pages/ListaStatus";
 import Notificacoes from "./pages/Notificacoes";
 import AddNotification from "./shared/components/AddNotification";
 import NotificationPage from "./pages/NotificationPage";
-import notificacoes from "./shared/services/notificacoes";
+import api from "./shared/services/api";
+
 function App() {
   const [openModal, setOpenModal] = useState(false);
   const [notifications, setNotifications] = useState(JSON.parse(localStorage.getItem("notifications")) || []);
@@ -27,7 +28,7 @@ function App() {
     setNotifications(newNotifications);
   }
 
-  function onAddNotificationSubmit(title, description, status, patientName, responsible, priority) {
+  async function onAddNotificationSubmit(title, description, status, patientName, responsible, priority) {
     const newNotification = {
       id: uuidv4(),
       title,
@@ -39,6 +40,21 @@ function App() {
       isCompleted: false,
     };
     setNotifications([...notifications, newNotification]);
+
+        try {
+      console.log("Enviando nova notificação para WhatsApp via backend:", newNotification);
+      
+      const response = await api.post('/api/whatsapp/send-single', {
+        notification: newNotification
+      });
+
+      console.log('Resposta do envio de WhatsApp:', response.data.message);
+     
+
+    } catch (error) {
+      console.error('Falha ao enviar notificação para WhatsApp via backend:', error);
+      
+    }
  
   }
 

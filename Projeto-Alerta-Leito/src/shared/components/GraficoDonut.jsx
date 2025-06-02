@@ -32,7 +32,7 @@ const GraficoDonut = ({ livres, desocupando, ocupados }) => {
   };
 
   return (
-    <div className="card p-3 d-flex flex-column flex-md-row align-items-center gap-4 w-100" style={{ minHeight: "18rem" }}>
+    <div className="card p-1 d-flex flex-column flex-md-row align-items-center gap-4 w-100" style={{ minHeight: "18rem" }}>
       <div
   className="w-100 w-md-50"
   style={{ minHeight: "15rem", maxWidth: "400px", width: "100%" }}

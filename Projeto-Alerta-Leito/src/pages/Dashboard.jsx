@@ -14,7 +14,7 @@ const Dashboard = () => {
   });
 
   useEffect(() => {
-    // pega os dados da api falsa
+    // pega os dados da api do banco de dados
     fetchLeitosData().then((data) => setLeitosData(data));
   }, []);
 
@@ -43,7 +43,7 @@ const Dashboard = () => {
           </div>
 
           {/* Linha para o gráfico e notificações */}
-          <div className="row d-flex justify-content-center align-content-center mt-5">
+          <div className="row mt-5">
             <div className="col-12 col-md-8 text-center">
               <h4 className="text-body-secondary mb-3">Status dos Leitos</h4>
               <GraficoDonut
