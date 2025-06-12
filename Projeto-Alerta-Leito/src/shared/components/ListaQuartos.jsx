@@ -40,28 +40,50 @@ const ListaQuartos = () => {
 
   return (
     <div className="overflow-x-auto">
-      <table className="min-w-full table-auto border-collapse bg-zinc-700">
-        <thead className="bg-gray-100">
-          <tr>
-            <th className="px-4 py-2 text-left font-medium">Responsável</th>
-            <th className="px-4 py-2 text-left font-medium">Quarto</th>
-            <th className="px-4 py-2 text-left font-medium">Leito</th>
-            <th className="px-4 py-2 text-center font-medium">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {quartosData.map((quarto) => (
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 ">
+        <div className="" >  <h5 className="text-center" >Ocupados</h5 > {quartosData.filter((q) => q.status === 'ocupado').map((quarto) => (
                      <QuartoItem
               key={quarto.id}
               quarto={quarto.numeroQuarto}
               leito={quarto.leito}
               responsavel={quarto.responsavel}
               status={quarto.status}
+              hora={quarto.updatedAt}
             />
-        ))}
- 
-        </tbody>
-      </table>
+        ))} </div>
+        <div  className="">     <h5 className="text-center" >Em Manutenção</h5 > {quartosData.filter((q) => q.status === 'aguardando manutenção').map((quarto) => (
+                     <QuartoItem
+              key={quarto.id}
+              quarto={quarto.numeroQuarto}
+              leito={quarto.leito}
+              responsavel={quarto.responsavel}
+              status={quarto.status}
+              hora={quarto.updatedAt}
+            />
+        ))}   </div>
+        <div className=" " >       <h5 className="text-center" >Em Limpeza</h5 > {quartosData.filter((q) => q.status === 'aguardando limpeza').map((quarto) => (
+                     <QuartoItem
+              key={quarto.id}
+              quarto={quarto.numeroQuarto}
+              leito={quarto.leito}
+              responsavel={quarto.responsavel}
+              status={quarto.status}
+               hora={quarto.updatedAt}
+            />
+        ))}   </div>
+        <div  className=" ">    <h5 className="text-center" >Livres</h5 > {quartosData.filter((q) => q.status === 'livre').map((quarto) => (
+                     <QuartoItem
+              key={quarto.id}
+              quarto={quarto.numeroQuarto}
+              leito={quarto.leito}
+              responsavel={quarto.responsavel}
+              status={quarto.status}
+              hora={quarto.updatedAt}
+            />
+        ))}   </div>
+
+
+      </div>
     </div>
   );
 };

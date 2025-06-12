@@ -27,7 +27,7 @@ const LayoutBase = ({ children }) => {
         </div>
 
         {/* principal */}
-        <div className="flex-grow-1 overflow-auto p-3" style={{marginLeft: "25px" }}>
+        <div className="flex-grow-1 overflow-auto p-0" style={{marginLeft: "25px" }}>
           {children}
         </div>
       </div>

@@ -49,17 +49,17 @@ app.post('/quartos', async(req, res) => {
 
 app.put('/quartos/:id', async (req, res) => {
     try {
-        const { id } = req.params; // Pega o ID da URL
-        const { status } = req.body; // Pega apenas o 'status' do corpo da requisição
+        const { id } = req.params; 
+        const { status } = req.body; 
 
-        // Validação: Verifica se o status foi fornecido
+        
         if (status === undefined) {
             return res.status(400).json({ error: 'O campo "status" é obrigatório no corpo da requisição.' });
         }
 
         const quartoAtualizado = await prisma.quarto.update({
-            where: { id: String(id) }, // Identifica o quarto pelo ID
-            data: { status: status },  // Atualiza apenas o campo 'status'
+            where: { id: String(id) }, 
+            data: { status: status },  
         });
 
         res.json(quartoAtualizado); 
@@ -130,7 +130,7 @@ app.post('/quartos/popular', async (req, res) => {
   }
 });
 
-app.listen(port, '192.168.0.100', () => {
+app.listen(port, '192.168.0.18', () => {
   console.log(`Servidor rodando na porta ${port}`)
 })
 

@@ -5,7 +5,7 @@ import ListaQuartos from "../shared/components/ListaQuartos";
 const ListaStatus = () => {
   return (
     <LayoutBase>
-      <div className="container mt-4">
+      <div className="container mt-4 px-0 ">
         <h4>Status dos Quartos</h4>
         <ListaQuartos/>
     </div>
