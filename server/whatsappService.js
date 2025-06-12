@@ -72,7 +72,7 @@ export async function enviarNotificacaoIndividualWhatsApp(notificacaoOriginal) {
       leito = partesTitulo[0].trim();
       quarto = partesTitulo[1].trim();
     } else if (partesTitulo.length === 1) {
-      quarto = notificacaoOriginal.title.trim(); // Ajuste se 'title' for só o leito
+      quarto = notificacaoOriginal.title.trim(); // Ajuste se 'title' for so o leito
     }
   }
   const notificacaoProcessada = {

@@ -8,7 +8,8 @@ const prisma = new PrismaClient();
 
 const app = express()
 
-const port = 5001
+const PORT = process.env.PORT || 5001; // pega a porta do Render ou 5001 daqui
+
 app.use(express.json())
 app.use(cors())
 
@@ -130,7 +131,7 @@ app.post('/quartos/popular', async (req, res) => {
   }
 });
 
-app.listen(port, '192.168.0.18', () => {
-  console.log(`Servidor rodando na porta ${port}`)
-})
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+});
 
