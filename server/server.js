@@ -48,29 +48,27 @@ app.post('/quartos', async(req, res) => {
     }
 })
 
-app.put('/quartos/:id', async (req, res) => {
+app.put('/quartos/numero/:numero/status/:novoStatus', async (req, res) => {
     try {
-        const { id } = req.params; 
-        const { status } = req.body; 
+        const numeroDoQuarto  = parseInt(req.params.numero, 10);
+        const novoStatus  = req.params.novoStatus; 
 
-        
-        if (status === undefined) {
+        if (isNaN(numeroDoQuarto)){
+          return res.status(400).json({error: 'Esee qurto é invalido'})
+        }
+        if (novoStatus === undefined) {
             return res.status(400).json({ error: 'O campo "status" é obrigatório no corpo da requisição.' });
         }
 
         const quartoAtualizado = await prisma.quarto.update({
-            where: { id: String(id) }, 
-            data: { status: status },  
+            where: { numeroQuarto: numeroDoQuarto }, 
+            data: { status: novoStatus },  
         });
 
         res.json(quartoAtualizado); 
     } catch (error) {
-        console.error("Erro ao atualizar status do quarto:", error);
-        if (error.code === 'P2025') { 
-            return res.status(404).json({ error: 'Quarto não encontrado para atualização.' });
-        } else if (error.code === 'P2023' || error.message.includes("Malformed ObjectID")) { 
-            return res.status(400).json({ error: 'ID do quarto inválido.' });
-        }
+        console.error(`Erro ao atualizar status do quarto nº ${req.params.numero}:`, error);
+       
         res.status(500).json({ error: 'Erro interno ao atualizar o status do quarto.' });
     }
 });

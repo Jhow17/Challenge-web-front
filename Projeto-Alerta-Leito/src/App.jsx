@@ -42,13 +42,27 @@ function App() {
     setNotifications([...notifications, newNotification]);
 
         try {
-      console.log("Enviando nova notificação para WhatsApp via backend:", newNotification);
-      
-      const response = await api.post('/api/whatsapp/send-single', {
+          console.log("Enviando notificação para WhatsApp via backend:", newNotification);
+           const responseWhatsapp = await api.post('/api/whatsapp/send-single', {
         notification: newNotification
       });
+          console.log('Resposta do envio de WhatsApp:', responseWhatsapp.data.message);
 
-      console.log('Resposta do envio de WhatsApp:', response.data.message);
+         let numeroDoQuartoParaAtualizar;
+          if (newNotification.title && newNotification.title.includes('/')) {
+        numeroDoQuartoParaAtualizar = newNotification.title.split('/')[1]?.trim();
+      } else {
+        numeroDoQuartoParaAtualizar = newNotification.title?.trim();
+      }
+      
+       const novoStatusDoQuarto = newNotification.status;
+
+
+      if (numeroDoQuartoParaAtualizar && novoStatusDoQuarto){
+        console.log(`Atuaizando o Quarto ${numeroDoQuartoParaAtualizar}`)
+        const responseAtualizacaoStatus = await api.put(`/quartos/numero/${numeroDoQuartoParaAtualizar}/status/${novoStatusDoQuarto}`)
+        console.log('Status do quarto atualizado com sucesso:', responseAtualizacaoStatus.data);
+      }
      
 
     } catch (error) {

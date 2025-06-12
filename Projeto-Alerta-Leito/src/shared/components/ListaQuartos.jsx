@@ -51,7 +51,7 @@ const ListaQuartos = () => {
               hora={quarto.updatedAt}
             />
         ))} </div>
-        <div  className="">     <h5 className="text-center" >Em Manutenção</h5 > {quartosData.filter((q) => q.status === 'aguardando manutenção').map((quarto) => (
+        <div  className="">     <h5 className="text-center" >Em Manutenção</h5 > {quartosData.filter((q) => q.status === 'aguardando manutenção' || q.status === 'aguardando manutencao' ).map((quarto) => (
                      <QuartoItem
               key={quarto.id}
               quarto={quarto.numeroQuarto}

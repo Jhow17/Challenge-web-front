@@ -55,8 +55,8 @@ function AddNotification({ onAddNotificationSubmit }) {
           <option value="" disabled>
             Selecione o Serviço:
           </option>
-          <option value="limpeza">Limpeza</option>
-          <option value="manutencao">Manutenção</option>
+          <option value="aguardando limpeza">Limpeza</option>
+          <option value="aguardando manutencao">Manutenção</option>
         </select>
 
         {showPatientInput && (
