@@ -44,7 +44,7 @@ WHATSAPP_DESTINATION_NUMBER="NUMERO_DESTINO_COM_CODIGO_PAIS_EX_55119..."
 WHATSAPP_TEMPLATE_NAME="notificacao_alerta_leitos"
 
 4. Inicie o servidor:
-O comando --watch reinicia o servidor automaticamente quando você altera um arquivo.
+Se quiser Rodar localmente o comando --watch reinicia o servidor automaticamente quando você altera um arquivo.
 node --watch server.js
 
 
