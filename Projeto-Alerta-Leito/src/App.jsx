@@ -23,8 +23,10 @@ function App() {
     
   }, [notifications])
 
-  function onDeleteClick(notificationId) {
-    const newNotifications = notifications.filter((notification) => notification.id !== notificationId);
+  async function onDeleteClick(notificationId) {
+    const newNotifications = notifications.filter((notification) => notification.id !== notificationId.id);
+    const responseAtualizacaoStatus = await api.put(`/quartos/numero/${notificationId.title.split('/')[1]?.trim()}/status/livre`)
+    console.log('Status do quarto atualizado com sucesso:', responseAtualizacaoStatus.data);
     setNotifications(newNotifications);
   }
 

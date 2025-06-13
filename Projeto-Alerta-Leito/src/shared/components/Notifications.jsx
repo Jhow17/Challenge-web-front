@@ -45,7 +45,7 @@ function Notifications({ notifications, onDeleteClick }) {
                 <Info className="w-5 h-5" />
               </button>
               <button
-                onClick={() => onDeleteClick(notification.id)}
+                onClick={() => onDeleteClick(notification)}
                 className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700"
                 title="Excluir Notificação"
               >
