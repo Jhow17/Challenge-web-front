@@ -24,13 +24,13 @@ async function enviarNotificacaoFormatada(notificacaoProcessada) {
     "type": "template",
     "template": {
       "name": WHATSAPP_TEMPLATE_NAME,
-      "language": { "code": "pt_BR" },
+      "language": { "code": "pt_PT" },
       "components": [
         {
           "type": "body",
           "parameters": [
-            { "type": "text", "text": String(notificacaoProcessada.leito) },
             { "type": "text", "text": String(notificacaoProcessada.quarto) },
+            { "type": "text", "text": String(notificacaoProcessada.leito) },
             { "type": "text", "text": String(notificacaoProcessada.conteudo) }
           ]
         }
