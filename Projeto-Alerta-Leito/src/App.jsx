@@ -23,12 +23,21 @@ function App() {
     
   }, [notifications])
 
-  async function onDeleteClick(notificationId) {
-    const newNotifications = notifications.filter((notification) => notification.id !== notificationId.id);
-    const responseAtualizacaoStatus = await api.put(`/quartos/numero/${notificationId.title.split('/')[1]?.trim()}/status/livre`)
-    console.log('Status do quarto atualizado com sucesso:', responseAtualizacaoStatus.data);
+  async function onDeleteClick(notification) {
+   
+    const newNotifications = notifications.filter((n) => n.id !== notification.id);
     setNotifications(newNotifications);
-  }
+
+    try {
+        const numeroQuarto = notification.title.split('/')[1]?.trim();
+        if (numeroQuarto) {
+            const response = await api.put(`/quartos/numero/${numeroQuarto}/status/livre`);
+            console.log('Status do quarto atualizado com sucesso:', response.data);
+        }
+    } catch (error) {
+        console.error('Falha ao atualizar o status do quarto:', error);
+    }
+}
 
   async function onAddNotificationSubmit(title, description, status, patientName, responsible, priority) {
     const newNotification = {
