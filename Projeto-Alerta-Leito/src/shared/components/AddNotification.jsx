@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { RoomContext } from '../../App';
 
 function AddNotification({ onAddNotificationSubmit }) {
+  const { freeRooms, fetchFreeRooms } = useContext(RoomContext);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState('');
@@ -9,6 +11,11 @@ function AddNotification({ onAddNotificationSubmit }) {
   const [priority, setPriority] = useState('');
 
   const showPatientInput = status === 'ocupado' || status === 'reservado';
+
+  useEffect(() => {
+        
+        fetchFreeRooms();
+    }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -30,13 +37,19 @@ function AddNotification({ onAddNotificationSubmit }) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label className="form-label">Leito/Quarto:</label>
-        <input
-          type="text"
-          className="form-control rounded-4"
-          value={title}
-          onChange={(event) => setTitle(event.target.value)}
-        />
+        <label className="form-label">Quarto:</label>
+            <select
+                className="form-control rounded-4"
+                value={title}
+                onChange={(event) => setTitle(event.target.value)}
+            >
+                <option value="" disabled>Selecione um quarto...</option>
+                {freeRooms.map(room => (
+                    <option key={room.id} value={`${room.leito}/${room.numeroQuarto}`}>
+                        {`Quarto ${room.numeroQuarto}, Leito ${room.leito}`}
+                    </option>
+                ))}
+            </select>
 
         <label className="form-label mt-3">Descrição:</label>
         <textarea

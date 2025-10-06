@@ -25,6 +25,23 @@ app.get('/quartos', async (req, res) => {
     }
 })
 
+app.get('/livres', async(req,res) => {
+  try{
+    const quartosLivres = await prisma.quarto.findMany({
+      where : {
+        status : "livre"
+
+      }
+    })
+    res.json(quartosLivres)
+
+  }catch(e){
+    console.log('Erro ao buscar quartos livres', e)
+    res.status(500).json({'erro' : e.message})
+
+  }
+})
+
 app.post('/quartos', async(req, res) => {
     try{
         const {numeroQuarto, leito, responsavel, status} = req.body

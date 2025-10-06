@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './global.css';
-import  {React, useEffect, useState } from "react";
+import  React, {useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import {  Routes, Route } from "react-router-dom";
 
@@ -14,12 +14,25 @@ import AddNotification from "./shared/components/AddNotification";
 import NotificationPage from "./pages/NotificationPage";
 import api from "./shared/services/api";
 
+export const RoomContext = React.createContext() ;
+
 function App() {
   const [openModal, setOpenModal] = useState(false);
   const [notifications, setNotifications] = useState(JSON.parse(localStorage.getItem("notifications")) || []);
+  const [freeRooms, setRooms] = useState([]);
+
+  const fetchFreeRooms = async () => {
+        try {
+            const response = await api.get('/livres');
+            setRooms(response.data);
+        } catch (error) {
+            console.error('Erro ao buscar quartos livres:', error);
+        }
+    };
 
   useEffect(() => {
     localStorage.setItem("notifications", JSON.stringify(notifications));
+    fetchFreeRooms() 
     
   }, [notifications])
 
@@ -34,6 +47,7 @@ function App() {
             const response = await api.put(`/quartos/numero/${numeroQuarto}/status/livre`);
             console.log('Status do quarto atualizado com sucesso:', response.data);
         }
+        fetchFreeRooms();
     } catch (error) {
         console.error('Falha ao atualizar o status do quarto:', error);
     }
@@ -92,10 +106,12 @@ function App() {
 
       {/* Rotas */}
       <div>
+        <RoomContext.Provider value={{ freeRooms, fetchFreeRooms }}>
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/lista-status" element={<ListaStatus />} />
-          <Route 
+          
+            <Route 
             path="/notificacoes" 
             element={
               <Notificacoes 
@@ -107,7 +123,11 @@ function App() {
           />
    
           <Route path="/notification" element={<NotificationPage />} />
+
+          
+          
         </Routes>
+        </RoomContext.Provider>
       </div>
     </>
   );
