@@ -45,7 +45,7 @@ function AddNotification({ onAddNotificationSubmit }) {
             >
                 <option value="" disabled>Selecione um quarto...</option>
                 {freeRooms.map(room => (
-                    <option key={room.id} value={`${room.leito}/${room.numeroQuarto}`}>
+                    <option key={room.id} value={`${room.numeroQuarto}/${room.leito}`}>
                         {`Quarto ${room.numeroQuarto}, Leito ${room.leito}`}
                     </option>
                 ))}

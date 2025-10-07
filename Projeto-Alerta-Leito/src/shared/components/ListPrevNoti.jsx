@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import NotificacaoPreview from './NotificacaoPreview'
+import { RoomContext } from '../../App';
 
 
 const ListPrevNoti = () => {
-    const [notifications, setNotifications] = useState([]);
+    const { notifications } = useContext(RoomContext);
     // aqui ele ta fznd a mesma coisa que na App pegando os dados diretos da local storage para atualizar
 
-    useEffect(() => {
-        const storedNotifications = JSON.parse(localStorage.getItem("notifications")) || [];
-        setNotifications(storedNotifications);
-      }, []);
+
 return (
     <div className="flex-grow-1 overflow-hidden">
         <div className="mb-3">

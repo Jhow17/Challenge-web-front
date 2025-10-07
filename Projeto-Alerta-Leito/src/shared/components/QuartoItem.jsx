@@ -5,7 +5,8 @@ const statusStyles = {
   "ocupado": "bg-red-500/50 text-white",
   "livre": "bg-green-500/50 text-white",
   "aguardando limpeza": "bg-blue-500/50 text-white",
-  "aguardando manutenção": "bg-purple-500/50 text-white",
+  "aguardando manutencao" : "bg-purple-500/50 text-white",
+  "aguardando manutenção" : "bg-purple-500/50 text-white",
   "default": "bg-gray-300/50 text-gray-800" 
 };
 

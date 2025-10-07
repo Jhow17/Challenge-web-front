@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { Info, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -16,6 +17,8 @@ function Notifications({ notifications, onDeleteClick }) {
   }
 
   return (
+
+    // eslint-disable-next-line react/react-in-jsx-scope
     <ul className="space-y-4 p-6 bg-slate-100 rounded-lg shadow-inner">
       {notifications.length === 0 ? (
         <p className="text-center text-gray-600 text-lg py-2">Nenhuma notificação encontrada.</p>
@@ -26,7 +29,16 @@ function Notifications({ notifications, onDeleteClick }) {
             className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 p-2 bg-white rounded-lg shadow"
           >
             <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-y-2 gap-x-4 text-gray-700 w-full">
-              <h5 className="text-lg font-semibold text-gray-800 md:col-span-2 mb-2">{notification.title}</h5>
+              <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-y-2 gap-x-4 text-gray-700 w-full">
+  <p className="text-gray-700">
+    <strong className="text-sm font-semibold text-gray-800">Quarto: </strong>
+    {notification.title.split('/')[1]?.trim()}
+  </p>
+  <p className="text-gray-700">
+    <strong className="text-sm font-semibold text-gray-800">Leito: </strong>
+    {notification.title.split('/')[0]?.trim()}
+  </p>
+  </div>
 
               <p><strong>Status:</strong> {notification.status}</p>
               <p><strong>Prioridade:</strong> {notification.priority}</p>
@@ -56,6 +68,8 @@ function Notifications({ notifications, onDeleteClick }) {
         ))
       )}
     </ul>
+   
+
   );
 }
 

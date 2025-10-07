@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './global.css';
 import  React, {useEffect, useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
+
 import {  Routes, Route } from "react-router-dom";
 
 
@@ -18,7 +18,7 @@ export const RoomContext = React.createContext() ;
 
 function App() {
   const [openModal, setOpenModal] = useState(false);
-  const [notifications, setNotifications] = useState(JSON.parse(localStorage.getItem("notifications")) || []);
+  const [notifications, setNotifications] = useState([]);
   const [freeRooms, setRooms] = useState([]);
 
   const fetchFreeRooms = async () => {
@@ -30,32 +30,45 @@ function App() {
         }
     };
 
+    const fetchNotifications = async () => {
+      try {
+          const response = await api.get('/notificacoes');
+          setNotifications(response.data);
+      } catch (error) {
+          console.error('Erro ao buscar notificações do backend:', error);
+      }
+  };
+
   useEffect(() => {
-    localStorage.setItem("notifications", JSON.stringify(notifications));
+    
     fetchFreeRooms() 
+    fetchNotifications()
     
   }, [notifications])
 
   async function onDeleteClick(notification) {
-   
-    const newNotifications = notifications.filter((n) => n.id !== notification.id);
-    setNotifications(newNotifications);
-
+    
     try {
-        const numeroQuarto = notification.title.split('/')[1]?.trim();
-        if (numeroQuarto) {
-            const response = await api.put(`/quartos/numero/${numeroQuarto}/status/livre`);
-            console.log('Status do quarto atualizado com sucesso:', response.data);
-        }
-        fetchFreeRooms();
+      await api.delete(`/notificacoes/${notification.id}`);
+      
+      
+      const numeroQuarto = notification.title.split('/')[1]?.trim();
+      if (numeroQuarto) {
+          const response = await api.put(`/quartos/numero/${numeroQuarto}/status/livre`);
+          console.log('Status do quarto atualizado com sucesso:', response.data);
+          
+          
+      }
+
+      fetchNotifications();
     } catch (error) {
-        console.error('Falha ao atualizar o status do quarto:', error);
+      
+      console.error('Falha na deleção da notificação ou na atualização do quarto:', error);
     }
-}
+  }
 
   async function onAddNotificationSubmit(title, description, status, patientName, responsible, priority) {
-    const newNotification = {
-      id: uuidv4(),
+    const newNotificationData = {
       title,
       description,
       status,
@@ -64,37 +77,41 @@ function App() {
       responsible,
       isCompleted: false,
     };
-    setNotifications([...notifications, newNotification]);
 
-        try {
-          console.log("Enviando notificação para WhatsApp via backend:", newNotification);
-           const responseWhatsapp = await api.post('/api/whatsapp/send-single', {
-        notification: newNotification
+    try {
+      
+      const responseDB = await api.post('/notificacoes', newNotificationData);
+      const createdNotification = responseDB.data;
+
+      console.log("Enviando notificação via backend:", createdNotification);
+      const responseBot = await api.post('/api/whatsapp/send-single', {
+        notification: createdNotification 
       });
-          console.log('Resposta do envio de WhatsApp:', responseWhatsapp.data.message);
+      console.log('Resposta do envio do Bot:', responseBot.data.message);
 
-         let numeroDoQuartoParaAtualizar;
-          if (newNotification.title && newNotification.title.includes('/')) {
-        numeroDoQuartoParaAtualizar = newNotification.title.split('/')[1]?.trim();
+      let numeroDoQuartoParaAtualizar;
+      if (createdNotification.title && createdNotification.title.includes('/')) {
+        numeroDoQuartoParaAtualizar = createdNotification.title.split('/')[0]?.trim();
       } else {
-        numeroDoQuartoParaAtualizar = newNotification.title?.trim();
+        numeroDoQuartoParaAtualizar = createdNotification.title?.trim();
       }
       
-       const novoStatusDoQuarto = newNotification.status;
-
+      const novoStatusDoQuarto = createdNotification.status;
 
       if (numeroDoQuartoParaAtualizar && novoStatusDoQuarto){
-        console.log(`Atuaizando o Quarto ${numeroDoQuartoParaAtualizar}`)
-        const responseAtualizacaoStatus = await api.put(`/quartos/numero/${numeroDoQuartoParaAtualizar}/status/${novoStatusDoQuarto}`)
+        console.log(`Atuaizando o Quarto ${numeroDoQuartoParaAtualizar}`);
+        const responseAtualizacaoStatus = await api.put(`/quartos/numero/${numeroDoQuartoParaAtualizar}/status/${novoStatusDoQuarto}`);
+        console.log(`O novo Status do quarto : ${novoStatusDoQuarto} e o numero é ${numeroDoQuartoParaAtualizar} `)
         console.log('Status do quarto atualizado com sucesso:', responseAtualizacaoStatus.data);
       }
-     
+      
+      fetchNotifications();
 
     } catch (error) {
-      console.error('Falha ao enviar notificação para WhatsApp via backend:', error);
-      
+      console.error('Falha completa no processo de notificação e DB:', error);
+
+      fetchNotifications(); 
     }
- 
   }
 
   return (
@@ -106,7 +123,7 @@ function App() {
 
       {/* Rotas */}
       <div>
-        <RoomContext.Provider value={{ freeRooms, fetchFreeRooms }}>
+        <RoomContext.Provider value={{ freeRooms, fetchFreeRooms, notifications, fetchNotifications }}>
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/lista-status" element={<ListaStatus />} />

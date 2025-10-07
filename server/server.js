@@ -108,42 +108,79 @@ app.delete('/quartos/:id', async (req, res) => {
   }
 })
 
-app.post('/quartos/popular', async (req, res) => {
-  const listaDeQuartosExemplo = [
-    { quarto: 1, leito: 1, responsavel: 'João', status: 'livre' },
-    { quarto: 2, leito: 2, responsavel: 'Maria', status: 'ocupado' },
-    { quarto: 3, leito: 1, responsavel: 'Lucas', status: 'aguardando limpeza' },
-    { quarto: 4, leito: 2, responsavel: 'Ana', status: 'ocupado' },
-    { quarto: 5, leito: 1, responsavel: 'João', status: 'aguardando manutenção' },
-    { quarto: 6, leito: 2, responsavel: 'Maria', status: 'livre' },
-    { quarto: 7, leito: 1, responsavel: 'Lucas', status: 'ocupado' },
-    { quarto: 8, leito: 2, responsavel: 'Ana', status: 'aguardando limpeza' },
-    { quarto: 9, leito: 1, responsavel: 'João', status: 'ocupado' },
-    { quarto: 10, leito: 2, responsavel: 'Maria', status: 'aguardando manutenção' },
-    { quarto: 11, leito: 1, responsavel: 'Lucas', status: 'livre' },
-    { quarto: 12, leito: 2, responsavel: 'Ana', status: 'ocupado' },
-    { quarto: 13, leito: 1, responsavel: 'João', status: 'aguardando limpeza' },
-    { quarto: 14, leito: 2, responsavel: 'Maria', status: 'livre' },
-    { quarto: 15, leito: 1, responsavel: 'Lucas', status: 'aguardando manutenção' }
-  ];
+app.post('/notificacoes', async (req, res) => {
+    try {
+        const { title, description, status, priority, patientName, responsible, isCompleted } = req.body;
+        
+        const novaNotificacao = await prisma.notificacao.create({
+            data: {
+                title,
+                description,
+                status,
+                priority,
+                patientName,
+                responsible,
+                isCompleted: isCompleted ?? false, // Garante que isCompleted seja false se não for enviado
+            },
+        });
+        res.status(201).json(novaNotificacao);
+    } catch (error) {
+        console.error('Erro ao criar notificação:', error);
+        res.status(500).json({ error: 'Erro interno ao criar a notificação.' });
+    }
+});
 
-  try {
-    const dadosFormatados = listaDeQuartosExemplo.map(q => ({
-      numeroQuarto: q.quarto,
-      leito: q.leito,
-      responsavel: q.responsavel,
-      status: q.status,
-    }));
-    
-    const resultado = await prisma.quarto.createMany({
-      data: dadosFormatados,
-    });
+app.get('/notificacoes', async (req, res) => {
+    try {
+        const notificacoes = await prisma.notificacao.findMany();
+        res.json(notificacoes);
+    } catch (error) {
+        console.error('Erro ao listar notificações:', error);
+        res.status(500).json({ error: 'Erro interno ao listar notificações.' });
+    }
+});
 
-    res.status(201).json({ message: `${resultado.count} quartos foram adicionados com sucesso.`, data: resultado });
-  } catch (error) {
-    console.error("Erro ao popular quartos:", error);
-    res.status(500).json({ error: 'Erro interno ao popular os quartos.' });
-  }
+app.put('/notificacoes/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { title, description, status, priority, patientName, responsible, isCompleted } = req.body;
+        
+        const notificacaoAtualizada = await prisma.notificacao.update({
+            where: { id: String(id) },
+            data: {
+                title,
+                description,
+                status,
+                priority,
+                patientName,
+                responsible,
+                isCompleted,
+            },
+        });
+        res.json(notificacaoAtualizada);
+    } catch (error) {
+        console.error('Erro ao atualizar notificação:', error);
+        if (error.code === 'P2025') {
+            return res.status(404).json({ error: 'Notificação não encontrada.' });
+        }
+        res.status(500).json({ error: 'Erro interno ao atualizar a notificação.' });
+    }
+});
+
+app.delete('/notificacoes/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        await prisma.notificacao.delete({
+            where: { id: String(id) },
+        });
+        res.status(200).json({ message: 'Notificação deletada com sucesso.' });
+    } catch (error) {
+        console.error("Erro ao deletar notificação:", error);
+        if (error.code === 'P2025') {
+            return res.status(404).json({ error: 'Notificação não encontrada para deleção.' });
+        }
+        res.status(500).json({ error: 'Erro interno ao deletar a notificação.' });
+    }
 });
 
 app.listen(PORT, '0.0.0.0', () => {
