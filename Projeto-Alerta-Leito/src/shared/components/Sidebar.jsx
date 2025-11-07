@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logoTemporario from '../images/Logo-Temporario.png';
+import { useAuth } from "./Auth";
+import { ImExit } from "react-icons/im";
 
 const Sidebar = () => {
+  const {handleExit} = useAuth();
   return (
     <aside>
       <div
@@ -30,6 +33,13 @@ const Sidebar = () => {
             <Link to="/notificacoes" className="nav-link text-black">
               <i className="bi bi-bell-fill me-2"></i> Notificações
             </Link>
+          </li>
+          <li className="flex justify-around">
+            <button 
+              className="nav-link text-black d-flex align-items-center" 
+              onClick={handleExit}
+              
+            ><ImExit size={20} className="me-2" />Sair</button>
           </li>
         </ul>
       </div>

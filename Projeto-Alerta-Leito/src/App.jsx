@@ -4,15 +4,18 @@ import './global.css';
 import  React, {useEffect, useState } from "react";
 
 import {  Routes, Route } from "react-router-dom";
-
-
+import PrivateRoute from "./pages/PrivateRoute.jsx";
 import Modal from "./shared/components/Modal";
 import Dashboard from "./pages/Dashboard";
 import ListaStatus from "./pages/ListaStatus";
 import Notificacoes from "./pages/Notificacoes";
 import AddNotification from "./shared/components/AddNotification";
+
 import NotificationPage from "./pages/NotificationPage";
+import SingIn from "./pages/SingIn";
 import api from "./shared/services/api";
+
+import { AuthProvider } from "./shared/components/Auth.jsx";
 
 export const RoomContext = React.createContext() ;
 
@@ -123,28 +126,36 @@ function App() {
 
       {/* Rotas */}
       <div>
-        <RoomContext.Provider value={{ freeRooms, fetchFreeRooms, notifications, fetchNotifications }}>
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/lista-status" element={<ListaStatus />} />
-          
-            <Route 
-            path="/notificacoes" 
-            element={
-              <Notificacoes 
-                notifications={notifications}
-                onAddNotificationSubmit={onAddNotificationSubmit}
-                onDeleteClick={onDeleteClick}
-              />
-            } 
-          />
-   
-          <Route path="/notification" element={<NotificationPage />} />
+        <AuthProvider>
+          <RoomContext.Provider value={{ freeRooms, fetchFreeRooms, notifications, fetchNotifications, }}>
+            <Routes>
+              <Route path="/" element={<SingIn/>} />
+              <Route element={<PrivateRoute/>}>
+                <Route path="/DashBoard" element={<Dashboard/>} />
+                <Route path="/lista-status" element={<ListaStatus />} />
+                
+                  <Route 
+                  path="/notificacoes" 
+                  element={
+                    <Notificacoes 
+                      notifications={notifications}
+                      onAddNotificationSubmit={onAddNotificationSubmit}
+                      onDeleteClick={onDeleteClick}
+                    />
+                  } 
+                />
+        
+                <Route path="/notification" element={<NotificationPage />} />
+              </Route>
+              
 
-          
-          
-        </Routes>
-        </RoomContext.Provider>
+              
+              
+            </Routes>
+          </RoomContext.Provider>
+
+        </AuthProvider>
+        
       </div>
     </>
   );
