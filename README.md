@@ -1,4 +1,7 @@
-﻿# Challenge - First Year - Web-Front: Alerta Leitos
+﻿# Challenge Software Engineering - First Year - Alerta Leitos
+
+## Conquista
+O projeto Alerta Leitos foi premiado como o segundo melhor projeto desenvolvido pelas turmas de primeiro ano de Engenharia de Software a partir de agosto/24. Tal feito foi reconhecido em um dos maiores eventos de tecnologia da América Latina, o FIAP NEXT 2025.
 
 ## Resumo
 O Alerta Leitos é uma aplicação web que visa otimizar o fluxo de pacientes nos leitos, permitindo uma comunicação ágil entre as equipes de limpeza, manutenção e enfermagem, melhorando a eficiência hospitalar e proporcionando uma melhor experiência para os pacientes.
@@ -11,10 +14,10 @@ O Alerta Leitos é uma aplicação web que visa otimizar o fluxo de pacientes no
 
 ## Membros do Grupo
 - Jonathan Henrique RM:561139
-- Henrique Celso RM: 559687
-- Davis Cardoso RM: 560723
-- Lucas Cortizo RM: 559734
-- Alan de Castro RM: 560152
+- Henrique Celso RM:559687
+- Davis Junior RM:560723
+- Lucas Cortizo RM:559734
+- Alan de Castro RM:560152
 
 # Clone o repositório
 git clone https://github.com/Jhow17/Challenge-web-front.git
@@ -46,5 +49,6 @@ WHATSAPP_TEMPLATE_NAME="notificacao_alerta_leitos"
 4. Inicie o servidor:
 O comando --watch reinicia o servidor automaticamente quando você altera um arquivo.
 node --watch server.js
+
 
 
